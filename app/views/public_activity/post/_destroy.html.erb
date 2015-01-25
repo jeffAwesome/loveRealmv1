@@ -1,0 +1,5 @@
+added a post <% if activity.trackable && activity.trackable.content.present? %>
+ <%= link_to activity.trackable.content, activity.trackable %> 
+  <% else %>
+  which has since been removed
+<% end %>

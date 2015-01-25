@@ -1,0 +1,26 @@
+<nav class="top-bar">
+<ul class="title-area">
+    <li class="name">
+    <a href="/"><div class="leftlogo"><%= image_tag("LogoElement.png", size: "48px", alt: "Logo")%></div></a>
+    </li>
+    <li class="toggle-topbar menu-icon">
+
+    <a href="#">Menu</a>
+    </li>
+</ul>
+<section class="top-bar-section">
+    <div class="searchbox"><a href="/search"><%= image_tag("search-128.png", size: "48", alt: "Logo") %></a></div>
+<%if user_signed_in? %>
+    <ul class="right">
+        <li><%= link_to 'Users', users_path %> </li>
+        <li class="divider"></li>
+        <li><%= link_to 'Profile', current_user %> </li>
+        <li class="divider"></li>
+        <li><%= link_to 'Edit', edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path , method: :delete %></li>
+    </ul>
+<% end %>
+
+</section>
+</nav>
