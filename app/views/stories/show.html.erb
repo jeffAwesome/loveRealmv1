@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @story.user.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @story.title %>
+</p>
+<p><%= image_tag @story.avatar.url(:medium), class: 'storyimage' %></p>
+<p>
+  <b>Content:</b>
+  <%= @story.content %>
+</p>
+<div class="taglist">
+	Tags: <%= raw @story.tag_list.map {|t| link_to "#"+t, tag_path(t)}.join(', ') %>
+</div>
+<%= render 'shared/like_form', likeable: @story %>
+
+
+
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

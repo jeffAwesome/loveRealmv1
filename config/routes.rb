@@ -1,6 +1,9 @@
 Facebook::Application.routes.draw do
 
     
+  resources :stories
+
+
     devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
     
       
@@ -21,6 +24,7 @@ Facebook::Application.routes.draw do
 
     resources :users
     resources :posts
+    
     resources :comments
 
     get 'tags/:tag', to: 'posts#index', as: :tag

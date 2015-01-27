@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150122154029) do
+ActiveRecord::Schema.define(:version => 20150127124330) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
-    t.string   "trackable_type"
+    t.string   "trackable_type", :limit => nil
     t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "key"
+    t.string   "owner_type",     :limit => nil
+    t.string   "key",            :limit => nil
     t.text     "parameters"
     t.integer  "recipient_id"
-    t.string   "recipient_type"
+    t.string   "recipient_type", :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,15 +36,16 @@ ActiveRecord::Schema.define(:version => 20150122154029) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "story_id"
   end
 
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "follows", :force => true do |t|
-    t.string   "follower_type"
+    t.string   "follower_type",   :limit => nil
     t.integer  "follower_id"
-    t.string   "followable_type"
+    t.string   "followable_type", :limit => nil
     t.integer  "followable_id"
     t.datetime "created_at"
   end
@@ -53,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20150122154029) do
   add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
   create_table "likes", :force => true do |t|
-    t.string   "liker_type"
+    t.string   "liker_type",    :limit => nil
     t.integer  "liker_id"
-    t.string   "likeable_type"
+    t.string   "likeable_type", :limit => nil
     t.integer  "likeable_id"
     t.datetime "created_at"
   end
@@ -64,9 +65,9 @@ ActiveRecord::Schema.define(:version => 20150122154029) do
   add_index "likes", ["liker_id", "liker_type"], :name => "fk_likes"
 
   create_table "mentions", :force => true do |t|
-    t.string   "mentioner_type"
+    t.string   "mentioner_type",   :limit => nil
     t.integer  "mentioner_id"
-    t.string   "mentionable_type"
+    t.string   "mentionable_type", :limit => nil
     t.integer  "mentionable_id"
     t.datetime "created_at"
   end
@@ -76,6 +77,18 @@ ActiveRecord::Schema.define(:version => 20150122154029) do
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "avatar_file_name",    :limit => nil
+    t.string   "avatar_content_type", :limit => nil
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "stories", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "title"
     t.text     "content"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
@@ -106,21 +119,21 @@ ActiveRecord::Schema.define(:version => 20150122154029) do
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
+    t.string   "email",                  :limit => nil, :default => "", :null => false
+    t.string   "encrypted_password",     :limit => nil, :default => "", :null => false
+    t.string   "reset_password_token",   :limit => nil
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",                         :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     :limit => nil
+    t.string   "last_sign_in_ip",        :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
+    t.string   "name",                   :limit => nil
+    t.string   "avatar_file_name",       :limit => nil
+    t.string   "avatar_content_type",    :limit => nil
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "provider"

@@ -3,43 +3,47 @@
 		<div class="title"><h2>LoveRealm</h2></div>
 		<div class="tagline">Connect with millions of Christians across the globe.<br />Encourage each other.</div>
 		<div class="connectwithemail"><%= link_to "Connect with e-mail", new_user_registration_path %></div>
-		<div class="loginwithfacebook"><%= link_to "Connect with facebook","/users/auth/facebook"%></div>
+		<div class="loginwithfacebook"><%= link_to "Connect with facebook", user_omniauth_authorize_path(:facebook) %></div>
 		<div class="shortblurb">
 		Real Christians do not spam; neither do they post stuff to<br />Facebook withour your permission. We're Christians!
 		</div>
 		<div class="loadmore"><%= image_tag("downarrow.png", size: "48", alt: "Logo")%></div>
 	</div>
     
-	<div class="posts row">
-		
-		<% @posts.each do |post| %>
-<div class="singlepost imagepost">
-	<div class="useravatar large-2 columns">
-		<%= image_tag post.user.avatar.url(:thumb), class: 'profile small' %>  				
+	<div class="posts row">		
+		<%= render 'posts/postlist' %>		
 	</div>
-	<div class="postcontent large-10 columns">
-		
-		<% if post.avatar.file? %>
-		<%= image_tag post.avatar.url(), class: 'postimage' %>
-		<% end %>
-		<%= post.content %>
-		<div class="auther"><%= post.user.name %></div>
-		<div class="posttags">
-			Tags: <%= raw post.tag_list.map {|t| link_to "#"+t, tag_path(t)}.join(', ') %>
+	<% @stories.each do |story| %>
+	<div class="useravatar large-2 columns">
+		<%= image_tag story.user.avatar.url(:thumb), class: '' %>  				
+	</div>
+	<div class="large-8 large-offset-2 col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3 col-xs-12">
+			<div class="row">
+				<div class="large-8 col-md-9 col-sm-12 col-xs-12 columns">
+					<h3><%= story.title %></h3>
+					<p>
+						<%= story.content %>
+					</p>
+					<%= link_to 'Read More', story %>
+					<div class="posttags">
+					Tags: <%= raw story.tag_list.map {|t| link_to "#"+t, tag_path(t)}.join(', ') %>
+					</div>
+				</div>
+				<div class="large-3 col-md-3 col-sm-12 col-xs-12 columns">	
+					<% if story.avatar.file? %>
+					<%= image_tag story.avatar.url(:medium), class: 'storyimage' %>
+					<% end %>
+				</div>
 		</div>
 		<div class="postshare postmeta row">
-			<div class="postdate large-2 columns">
-				<%=  time_ago_in_words(post.created_at)%> ago
+			<div class="postdate large-3 columns">
+				<%=  time_ago_in_words(story.created_at)%> ago
 			</div>
-			<div class="lovepost large-1 columns"><div class="loveicon left"></div><div class="lovecount left"><%= post.comments.count %></div></div>
-			<div class="commentpost large-1 columns"><div class="commenticon left"></div><div class="commentcount left"><%= post.comments.count %></div></div>
-			<div class="sharepost large-1 columns"><div class="shareicon left"></div><div class="sharecount left">60</div></div>
+			<div class="lovepost large-2 columns"><div class="loveicon left"></div><div class="lovecount left"><%= story.comments.count %></div></div>
+			<div class="commentpost large-2 columns"><div class="commenticon left"></div><div class="commentcount left"><%= story.comments.count %></div></div>
+			<div class="sharepost large-2 columns"><div class="shareicon left"></div><div class="sharecount left">60</div></div>
 			<div class="large-1 columns"></div>
-		</div>
-
-	</div>				
-</div>			
-<% end %>
-		
-	</div>		
+		</div>		
+	</div>	
+	<% end %>	
 </div>

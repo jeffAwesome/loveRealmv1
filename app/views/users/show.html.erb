@@ -2,8 +2,8 @@
 <% if user_signed_in? %>
 <%= render 'shared/follow_form' , user: @user%>
 <% end %>
-<div class="followers">Followers <%= followers_count(current_user.id) %></div>
-<div class="followers">Following <%= following_count(current_user.id) %></div>
+<div class="followers">Followers <%= followers_count() %></div>
+<div class="followers">Following <%= following_count() %></div>
 </div>
 <%= image_tag @user.avatar.url(:thumb), class: 'profile' %>
 <span class="left">

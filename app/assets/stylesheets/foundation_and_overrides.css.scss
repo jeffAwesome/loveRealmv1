@@ -16,10 +16,13 @@
 
 // We use these to control various global styles
 // $body-bg: #fff;
-// $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $body-font-weight: normal;
-// $body-font-style: normal;
+   $body-font-color: #535156;
+   $body-font-family: 'Open Sans', sans-serif;
+   $body-font-weight: normal;
+   $body-font-style: normal;
+   $body-font-size: '17px';
+   $body-line-height: 2;
+   
 
 // We use this to control font-smoothing
 // $font-smoothing: antialiased;
@@ -85,7 +88,7 @@
 //
 
 // We use these to control header font styles
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+   $header-font-family: 'Libre Baskerville', serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;

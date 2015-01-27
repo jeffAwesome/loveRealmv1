@@ -1,29 +1,47 @@
-<div class="posts row">
-		
-		<% @posts.each do |post| %>
-<div class="singlepost imagepost">
-	<div class="useravatar large-2 columns">
-		<%= image_tag post.user.avatar.url(:thumb), class: 'profile small' %>  				
-	</div>
-	<div class="postcontent large-10 columns">
-		<%= image_tag post.avatar.url(), class: 'postimage' %>
-		<%= post.content %>
-		<div class="auther"><%= post.user.name %></div>
-		<div class="posttags">
-			Tags: <%= raw post.tag_list.map {|t| link_to "#"+t, tag_path(t)}.join(', ') %>
-		</div>
-		<div class="postshare postmeta row">
-			<div class="postdate large-2 columns">
-				<%=  time_ago_in_words(post.created_at)%> ago
+<div class="dashboard row">		
+	<div class="large-10 large-offset-2 medium-10 medium-offset-1 userbio columns">
+		<div class="row">
+		    <div class="large-2 medium-2 small-2 col-xs-2 columns">
+				<%= image_tag current_user.avatar.url(:thumb), class: 'profile medium' %>  	
 			</div>
-			<div class="lovepost large-1 columns"><div class="loveicon left"></div><div class="lovecount left"><%= post.comments.count %></div></div>
-			<div class="commentpost large-1 columns"><div class="commenticon left"></div><div class="commentcount left"><%= post.comments.count %></div></div>
-			<div class="sharepost large-1 columns"><div class="shareicon left"></div><div class="sharecount left">60</div></div>
-			<div class="large-1 columns"></div>
+			<div class="large-10 medium-10 small-8 col-xs-8 columns">
+				<div class="tags">@HorseLover</div>
+				<div class="userprofile-name"><%= link_to current_user.name, current_user %></div>				
+				<div class="userprofile-followers">
+					<ul>
+						<li>My Content(3000)</li>
+						<li>Following(<%= following_count() %>)</li>
+						<li>Followers(<%= followers_count() %>)</li>
+					</ul>
+				</div>
+				<div class="aboutauther">
+					Christian Entrepreneur and Evangelist. I am simple stuff. 
+					<div class="designation">CEO, LoveRealm Worldwide Outreach. www.LoveRealm.org</div>
+				</div>
+			</div>
 		</div>
-
-	</div>				
-</div>			
-<% end %>
-		
+		<div class="row userdetails">			
+			<div class="useravatar large-2 col-md-2 col-sm-2 col-xs-2 columns"><%= image_tag current_user.avatar.url(:thumb), class: 'profile medium' %></div>
+			<div class="postcontent large-10 col-md-10 col-sm-10 col-xs-10 columns">
+				<div class="userboxes">
+					<ul>
+						<li><a href="">News Feed</a></li>
+						<li><a href="">Inbox</a></li>
+						<li><a href="">Notifications</a></li>
+						<li><a href="">Preferences</a></li>
+					</ul>
+				</div>
+				<div class="whattodo">
+					<h1>What do you want to do now?</h1>
+					<ul>
+						<li><a href="">Post a Status Update</a></li>
+						<li><a href="">Write a Story</a></li>
+						<li><a href="">Post a Picture</a></li>
+					</ul>
+				</div>
+			</div>				
+			
+		</div>
 	</div>		
+</div>		
+<%= render 'posts/postlist' %>	

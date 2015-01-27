@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     end
     def front
          @posts = Post.all;
+         @stories = Story.all;
     end
 
 end

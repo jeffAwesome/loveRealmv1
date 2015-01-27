@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     before_filter :authenticate_user!, only: [:create, :new, :edit, :destroy]
     def index
         if params[:tag]
-            @posts = Post.tagged_with(params[:tag])
+            @posts = Post.tagged_with(params[:tag])           
         else
             @posts = current_user.posts
         end
