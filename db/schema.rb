@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
-    t.string   "trackable_type", :limit => nil
+    t.string   "trackable_type"
     t.integer  "owner_id"
-    t.string   "owner_type",     :limit => nil
-    t.string   "key",            :limit => nil
+    t.string   "owner_type"
+    t.string   "key"
     t.text     "parameters"
     t.integer  "recipient_id"
-    t.string   "recipient_type", :limit => nil
+    t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "follows", :force => true do |t|
-    t.string   "follower_type",   :limit => nil
+    t.string   "follower_type"
     t.integer  "follower_id"
-    t.string   "followable_type", :limit => nil
+    t.string   "followable_type"
     t.integer  "followable_id"
     t.datetime "created_at"
   end
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
   add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
   create_table "likes", :force => true do |t|
-    t.string   "liker_type",    :limit => nil
+    t.string   "liker_type"
     t.integer  "liker_id"
-    t.string   "likeable_type", :limit => nil
+    t.string   "likeable_type"
     t.integer  "likeable_id"
     t.datetime "created_at"
   end
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
   add_index "likes", ["liker_id", "liker_type"], :name => "fk_likes"
 
   create_table "mentions", :force => true do |t|
-    t.string   "mentioner_type",   :limit => nil
+    t.string   "mentioner_type"
     t.integer  "mentioner_id"
-    t.string   "mentionable_type", :limit => nil
+    t.string   "mentionable_type"
     t.integer  "mentionable_id"
     t.datetime "created_at"
   end
@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.text     "content"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "avatar_file_name",    :limit => nil
-    t.string   "avatar_content_type", :limit => nil
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
@@ -119,21 +119,21 @@ ActiveRecord::Schema.define(:version => 20150127124330) do
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :limit => nil, :default => "", :null => false
-    t.string   "encrypted_password",     :limit => nil, :default => "", :null => false
-    t.string   "reset_password_token",   :limit => nil
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0,  :null => false
+    t.integer  "sign_in_count",          :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     :limit => nil
-    t.string   "last_sign_in_ip",        :limit => nil
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   :limit => nil
-    t.string   "avatar_file_name",       :limit => nil
-    t.string   "avatar_content_type",    :limit => nil
+    t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "provider"
